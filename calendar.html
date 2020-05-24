@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet"  href="style.css">
+<title>タイトル</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p>ご希望到着日:{{arrival_date}}</p>
+    <input type="date" v-model="arrival_date">
+  </div>
+</body>
+<script>
+var select = new Vue({
+  el: '#app',
+  data: {
+    arrival_date: ''
+  },
+  created: function() {
+    this.arrival_date = this.formatDate(new Date());
+  },
+  methods: {
+    formatDate: function(dt){
+      var y = dt.getFullYear();
+      var m = dt.getMonth();
+      var d = dt.getDate();
+      var result = y + '-' + m + '-' + d
+      return result;
+    }
+  }
+});
+</script>
+</html>
