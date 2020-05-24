@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet"  href="style.css">
+<title>タイトル</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="select">
+    <p>セレクトボックスコンポーネント</p>
+    <b>どの犬種がお好き？</b>{{answer}}
+    <select v-model="answer">
+      <option value="柴犬">柴犬</option>
+      <option value="ハスキー">ハスキー</option>
+      <option value="トイプードル">トイプードル</option>
+    </select>
+  </div>
+  <div id="arburary_option">
+    <p>optionの中身をバインドしたセレクトボックスコンポーネント</p>
+    <b>当店のご利用回数は？</b>{{answer}}
+    <select v-model="answer">
+      <option v-for="item in options" v-bind:value="item.label" v-bind:key="item.code">
+        {{item.label}}
+      </option>
+    </select>
+  </div>
+</body>
+<script>
+var select = new Vue({
+  el: '#select',
+  data: {
+    answer: '柴犬'
+  }
+})
+var app = new Vue({
+  el: '#arburary_option',
+  data: {
+    answer: '初めて',
+    options: [
+      {code: "初めて", label: "初めて"},
+      {code: "2回目", label: "2回目"},
+      {code: "3回目", label: "3回目"},
+    ]
+  },
+  computed: {
+    selectedCategory: function(){
+      return this.answer.join()
+    }
+  }
+});
+</script>
+</html>
